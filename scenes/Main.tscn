@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="2"]
@@ -54,6 +54,9 @@ fog_light_energy = 0.85
 fog_density = 0.015
 fog_sky_affect = 0.55
 
+[sub_resource type="BoxShape3D" id="12"]
+size = Vector3(120, 1, 120)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("2")
 
@@ -70,6 +73,12 @@ shadow_bias = 0.06
 [node name="SnowGround" type="MeshInstance3D" parent="."]
 mesh = SubResource("2")
 material_override = SubResource("1")
+
+[node name="SnowGroundCollider" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnowGroundCollider"]
+position = Vector3(0, -0.5, 0)
+shape = SubResource("12")
 
 [node name="EnvironmentDecor" type="Node3D" parent="."]
 
