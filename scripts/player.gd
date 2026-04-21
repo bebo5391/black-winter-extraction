@@ -5,14 +5,18 @@ extends CharacterBody3D
 @export var jump_velocity: float = 5.2
 @export var gravity: float = 14.0
 @export var mouse_sensitivity: float = 0.0025
+@export var initial_yaw: float = 0.0
+@export var initial_pitch: float = -0.32
 
 @onready var yaw_pivot: Node3D = $YawPivot
 @onready var pitch_pivot: Node3D = $YawPivot/PitchPivot
 
-var _pitch: float = -0.25
+var _pitch: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	yaw_pivot.rotation.y = initial_yaw
+	_pitch = initial_pitch
 	pitch_pivot.rotation.x = _pitch
 
 func _unhandled_input(event: InputEvent) -> void:

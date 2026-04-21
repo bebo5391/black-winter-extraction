@@ -74,7 +74,8 @@ material_override = SubResource("1")
 [node name="EnvironmentDecor" type="Node3D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1")]
-position = Vector3(0, 0.2, 8)
+position = Vector3(0, 0.2, 46)
+initial_pitch = -0.2
 
 [node name="Loot" type="Node3D" parent="."]
 
