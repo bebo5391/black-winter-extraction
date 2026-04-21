@@ -10,6 +10,7 @@ extends CharacterBody3D
 
 @onready var yaw_pivot: Node3D = $YawPivot
 @onready var pitch_pivot: Node3D = $YawPivot/PitchPivot
+@onready var follow_camera: Camera3D = $YawPivot/PitchPivot/SpringArm3D/Camera3D
 
 var _pitch: float = 0.0
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 	yaw_pivot.rotation.y = initial_yaw
 	_pitch = initial_pitch
 	pitch_pivot.rotation.x = _pitch
+	follow_camera.current = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
