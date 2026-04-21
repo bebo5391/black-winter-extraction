@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="2"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
-albedo_color = Color(0.96, 0.98, 1, 1)
-roughness = 0.95
+albedo_color = Color(0.93, 0.97, 1, 1)
+roughness = 0.88
+specular = 0.32
 
 [sub_resource type="PlaneMesh" id="2"]
 size = Vector2(120, 120)
@@ -32,19 +33,45 @@ height = 0.08
 albedo_color = Color(0.2, 0.7, 1, 0.3)
 transparency = 1
 
+[sub_resource type="ProceduralSkyMaterial" id="9"]
+sky_top_color = Color(0.33, 0.44, 0.59, 1)
+sky_horizon_color = Color(0.69, 0.77, 0.87, 1)
+ground_bottom_color = Color(0.69, 0.74, 0.8, 1)
+ground_horizon_color = Color(0.82, 0.86, 0.91, 1)
+
+[sub_resource type="Sky" id="10"]
+sky_material = SubResource("9")
+
+[sub_resource type="Environment" id="11"]
+background_mode = 2
+sky = SubResource("10")
+ambient_light_source = 3
+ambient_light_color = Color(0.69, 0.78, 0.9, 1)
+ambient_light_energy = 0.5
+fog_enabled = true
+fog_light_color = Color(0.76, 0.84, 0.92, 1)
+fog_light_energy = 0.85
+fog_density = 0.015
+fog_sky_affect = 0.55
+
 [node name="Main" type="Node3D"]
 script = ExtResource("2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("11")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-rotation = Vector3(-0.65, 0.45, 0)
-light_energy = 1.6
+rotation = Vector3(-0.78, 0.95, 0)
+light_color = Color(0.88, 0.93, 1, 1)
+light_energy = 2.0
 shadow_enabled = true
+shadow_bias = 0.06
 
 [node name="SnowGround" type="MeshInstance3D" parent="."]
 mesh = SubResource("2")
 material_override = SubResource("1")
+
+[node name="EnvironmentDecor" type="Node3D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector3(0, 0.2, 8)
